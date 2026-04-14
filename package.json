@@ -1,0 +1,14 @@
+{
+  "name": "luxehome",
+  "version": "1.0.0",
+  "description": "LuxeHome - Premium Home Appliances & Furniture Store",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}

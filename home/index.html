@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuxeHome — Premium Home Appliances & Furniture</title>
+  <meta name="description" content="Discover premium home appliances and luxury furniture at LuxeHome. Transform your living space with curated collections, modern designs, and smart home solutions." />
+  <meta name="keywords" content="home appliances, luxury furniture, smart home, modern design, interior decor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">LUXE<span>HOME</span></div>
+      <div class="preloader-bar"><div class="preloader-progress"></div></div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" id="nav-logo">LUXE<span>HOME</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#categories" class="nav-link" data-section="categories">Categories</a></li>
+        <li><a href="#products" class="nav-link" data-section="products">Products</a></li>
+        <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+        <li><a href="#testimonials" class="nav-link" data-section="testimonials">Reviews</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="search-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="nav-icon-btn" id="cart-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="nav-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="#home" class="mobile-link">Home</a></li>
+      <li><a href="#categories" class="mobile-link">Categories</a></li>
+      <li><a href="#products" class="mobile-link">Products</a></li>
+      <li><a href="#features" class="mobile-link">Features</a></li>
+      <li><a href="#testimonials" class="mobile-link">Reviews</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+      <input type="text" class="search-input" id="search-input" placeholder="Search appliances, furniture..." autocomplete="off" />
+      <button class="search-close" id="search-close" aria-label="Close Search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>Shopping Cart</h3>
+      <button class="cart-close" id="cart-close" aria-label="Close Cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cart-total-price">$0.00</span>
+      </div>
+      <button class="btn-primary cart-checkout" id="checkout-btn">Checkout Now</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+      <div class="hero-particles" id="hero-particles"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge reveal-up">
+            <span class="badge-dot"></span>
+            New Collection 2026
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line reveal-up" style="--delay:0.1s">Transform Your</span>
+            <span class="hero-line reveal-up" style="--delay:0.2s">Living <em class="accent-text">Space</em></span>
+            <span class="hero-line reveal-up" style="--delay:0.3s">With Elegance</span>
+          </h1>
+          <p class="hero-subtitle reveal-up" style="--delay:0.4s">Discover curated collections of premium home appliances and luxury furniture designed to elevate every corner of your home.</p>
+          <div class="hero-actions reveal-up" style="--delay:0.5s">
+            <a href="#products" class="btn-primary btn-lg magnetic-btn">
+              <span>Explore Collection</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#categories" class="btn-outline btn-lg magnetic-btn">
+              <span>Browse Categories</span>
+            </a>
+          </div>
+          <div class="hero-stats reveal-up" style="--delay:0.6s">
+            <div class="stat-item">
+              <span class="stat-number counter" data-target="2500">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Products</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number counter" data-target="150">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Brands</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number counter" data-target="98">0</span><span class="stat-plus">%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual reveal-up" style="--delay:0.3s">
+          <div class="hero-image-wrapper">
+            <div class="hero-image-glow"></div>
+            <div class="hero-3d-card" id="hero-3d-card">
+              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=700&fit=crop&q=80" alt="Premium Living Room Furniture" class="hero-image" />
+              <div class="hero-image-overlay"></div>
+            </div>
+            <div class="floating-card floating-card-1">
+              <div class="floating-card-icon">🛋️</div>
+              <div class="floating-card-text">
+                <span class="fc-title">Premium Sofa</span>
+                <span class="fc-price">$2,499</span>
+              </div>
+            </div>
+            <div class="floating-card floating-card-2">
+              <div class="floating-card-icon">⭐</div>
+              <div class="floating-card-text">
+                <span class="fc-title">Top Rated</span>
+                <span class="fc-price">4.9/5.0</span>
+              </div>
+            </div>
+            <div class="floating-card floating-card-3">
+              <div class="floating-card-icon">🚚</div>
+              <div class="floating-card-text">
+                <span class="fc-title">Free Delivery</span>
+                <span class="fc-price">Worldwide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="marquee-item">✦ Premium Quality</span>
+          <span class="marquee-item">✦ Free Worldwide Shipping</span>
+          <span class="marquee-item">✦ 5-Year Warranty</span>
+          <span class="marquee-item">✦ Sustainable Materials</span>
+          <span class="marquee-item">✦ Smart Home Ready</span>
+          <span class="marquee-item">✦ 30-Day Returns</span>
+          <span class="marquee-item">✦ Expert Installation</span>
+          <span class="marquee-item">✦ Premium Quality</span>
+          <span class="marquee-item">✦ Free Worldwide Shipping</span>
+          <span class="marquee-item">✦ 5-Year Warranty</span>
+          <span class="marquee-item">✦ Sustainable Materials</span>
+          <span class="marquee-item">✦ Smart Home Ready</span>
+          <span class="marquee-item">✦ 30-Day Returns</span>
+          <span class="marquee-item">✦ Expert Installation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag reveal-up">Browse By Category</span>
+          <h2 class="section-title reveal-up">Explore Our <em>Collections</em></h2>
+          <p class="section-subtitle reveal-up">From modern kitchen appliances to handcrafted furniture, find everything you need to create your dream home.</p>
+        </div>
+        <div class="categories-grid">
+          <div class="category-card reveal-up" style="--delay:0.1s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=500&fit=crop&q=80" alt="Kitchen Appliances" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Kitchen Appliances</h3>
+              <p>Smart & efficient cooking solutions</p>
+              <span class="category-count">340+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Kitchen Appliances"></a>
+          </div>
+          <div class="category-card reveal-up" style="--delay:0.2s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=500&fit=crop&q=80" alt="Living Room Furniture" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Living Room</h3>
+              <p>Luxury sofas & decor pieces</p>
+              <span class="category-count">520+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Living Room"></a>
+          </div>
+          <div class="category-card reveal-up" style="--delay:0.3s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&h=500&fit=crop&q=80" alt="Bedroom Furniture" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Bedroom</h3>
+              <p>Comfort meets modern design</p>
+              <span class="category-count">280+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Bedroom"></a>
+          </div>
+          <div class="category-card reveal-up" style="--delay:0.4s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=500&fit=crop&q=80" alt="Bathroom Appliances" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Bathroom</h3>
+              <p>Elegant bath essentials</p>
+              <span class="category-count">190+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Bathroom"></a>
+          </div>
+          <div class="category-card reveal-up" style="--delay:0.5s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=500&fit=crop&q=80" alt="Office Furniture" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Home Office</h3>
+              <p>Productive & stylish workspace</p>
+              <span class="category-count">210+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Home Office"></a>
+          </div>
+          <div class="category-card reveal-up" style="--delay:0.6s" data-tilt>
+            <div class="category-image">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=500&fit=crop&q=80" alt="Smart Home Devices" loading="lazy" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-info">
+              <h3>Smart Home</h3>
+              <p>Connected living technology</p>
+              <span class="category-count">150+ Items</span>
+            </div>
+            <a href="#products" class="category-link" aria-label="View Smart Home"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag reveal-up">Featured Products</span>
+          <h2 class="section-title reveal-up">Handpicked For <em>You</em></h2>
+          <p class="section-subtitle reveal-up">Our most popular and highest-rated products, selected by our design experts.</p>
+        </div>
+        <div class="product-filters reveal-up">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="furniture">Furniture</button>
+          <button class="filter-btn" data-filter="appliance">Appliances</button>
+          <button class="filter-btn" data-filter="lighting">Lighting</button>
+          <button class="filter-btn" data-filter="decor">Decor</button>
+        </div>
+        <div class="products-grid" id="products-grid">
+          <!-- Products injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax Banner -->
+    <section class="parallax-banner">
+      <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&h=900&fit=crop&q=80')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-content">
+        <h2 class="reveal-up">Crafted With <em>Passion</em></h2>
+        <p class="reveal-up">Every piece in our collection tells a story of meticulous craftsmanship and timeless design.</p>
+        <a href="#products" class="btn-primary btn-lg reveal-up magnetic-btn">
+          <span>Shop Now</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag reveal-up">Why LuxeHome</span>
+          <h2 class="section-title reveal-up">The LuxeHome <em>Difference</em></h2>
+          <p class="section-subtitle reveal-up">We go above and beyond to ensure your home transformation journey is seamless and delightful.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card reveal-up" style="--delay:0.1s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Premium Quality</h3>
+            <p>Every product undergoes rigorous quality testing. We partner only with brands that share our commitment to excellence.</p>
+          </div>
+          <div class="feature-card reveal-up" style="--delay:0.2s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3>Free Shipping</h3>
+            <p>Enjoy complimentary worldwide delivery on all orders. White-glove service available for premium furniture pieces.</p>
+          </div>
+          <div class="feature-card reveal-up" style="--delay:0.3s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            </div>
+            <h3>5-Year Warranty</h3>
+            <p>Rest easy with our comprehensive warranty coverage. We stand behind every product we sell with full support.</p>
+          </div>
+          <div class="feature-card reveal-up" style="--delay:0.4s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <h3>Easy Returns</h3>
+            <p>Changed your mind? No problem. Our 30-day hassle-free return policy ensures you shop with confidence.</p>
+          </div>
+          <div class="feature-card reveal-up" style="--delay:0.5s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12a10 10 0 0 1 10-10z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>24/7 Support</h3>
+            <p>Our dedicated team is always available to assist you. Get expert advice and support whenever you need it.</p>
+          </div>
+          <div class="feature-card reveal-up" style="--delay:0.6s">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Design Experts</h3>
+            <p>Get personalized interior design consultations from our team of certified professionals at no extra cost.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag reveal-up">Customer Stories</span>
+          <h2 class="section-title reveal-up">What Our Clients <em>Say</em></h2>
+          <p class="section-subtitle reveal-up">Join thousands of satisfied customers who have transformed their homes with LuxeHome.</p>
+        </div>
+        <div class="testimonials-slider" id="testimonials-slider">
+          <div class="testimonials-track" id="testimonials-track">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"LuxeHome completely transformed our living room. The quality of the furniture is outstanding, and the delivery was seamless. Absolutely love every piece!"</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Sarah M." loading="lazy" />
+                <div>
+                  <strong>Sarah Mitchell</strong>
+                  <span>Interior Designer, New York</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The smart home appliances from LuxeHome are game-changers. Everything integrates perfectly, and the customer support team is incredibly helpful."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=80" alt="James K." loading="lazy" />
+                <div>
+                  <strong>James Kowalski</strong>
+                  <span>Tech Entrepreneur, San Francisco</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"I furnished my entire home through LuxeHome. The curation is exquisite, prices are fair, and the 5-year warranty gives me total peace of mind."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&q=80" alt="Emily R." loading="lazy" />
+                <div>
+                  <strong>Emily Rodriguez</strong>
+                  <span>Architect, London</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"From the browsing experience to unboxing, everything felt premium. The attention to detail in their products is truly remarkable."</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&q=80" alt="David C." loading="lazy" />
+                <div>
+                  <strong>David Chen</strong>
+                  <span>Creative Director, Tokyo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn slider-prev" id="slider-prev" aria-label="Previous">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="slider-dots" id="slider-dots"></div>
+            <button class="slider-btn slider-next" id="slider-next" aria-label="Next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-card reveal-up">
+          <div class="newsletter-content">
+            <h2>Stay in the <em>Loop</em></h2>
+            <p>Subscribe for exclusive deals, design tips, and early access to new collections.</p>
+            <form class="newsletter-form" id="newsletter-form">
+              <div class="newsletter-input-group">
+                <input type="email" placeholder="Enter your email" required id="newsletter-email" />
+                <button type="submit" class="btn-primary">
+                  <span>Subscribe</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+              </div>
+              <p class="newsletter-note">No spam, ever. Unsubscribe anytime.</p>
+            </form>
+          </div>
+          <div class="newsletter-visual">
+            <div class="newsletter-shapes">
+              <div class="n-shape n-shape-1"></div>
+              <div class="n-shape n-shape-2"></div>
+              <div class="n-shape n-shape-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag reveal-up">Get In Touch</span>
+          <h2 class="section-title reveal-up">Let's <em>Connect</em></h2>
+          <p class="section-subtitle reveal-up">Have questions or need assistance? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal-up" style="--delay:0.1s">
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <h4>Visit Our Showroom</h4>
+              <p>123 Design Boulevard<br/>New York, NY 10001</p>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <h4>Call Us</h4>
+              <p>+1 (555) 123-4567<br/>Mon — Fri, 9AM — 6PM</p>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <h4>Email Us</h4>
+              <p>hello@luxehome.com<br/>support@luxehome.com</p>
+            </div>
+          </div>
+          <form class="contact-form reveal-up" style="--delay:0.2s" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="contact-name" placeholder=" " required />
+                <label for="contact-name">Your Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" id="contact-email" placeholder=" " required />
+                <label for="contact-email">Your Email</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="contact-subject" placeholder=" " required />
+              <label for="contact-subject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="contact-message" rows="5" placeholder=" " required></textarea>
+              <label for="contact-message">Your Message</label>
+            </div>
+            <button type="submit" class="btn-primary btn-lg magnetic-btn">
+              <span>Send Message</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">LUXE<span>HOME</span></a>
+          <p>Transforming houses into homes since 2020. We believe everyone deserves a beautiful living space.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.85 6.39 9.28-.09-.76-.17-1.93.04-2.76.19-.75 1.23-4.79 1.23-4.79s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.58 2.25-.87 3.5-.25 1.04.52 1.89 1.54 1.89 1.85 0 3.27-1.95 3.27-4.77 0-2.49-1.79-4.24-4.35-4.24-2.96 0-4.7 2.22-4.7 4.52 0 .89.35 1.85.78 2.37.08.1.1.19.07.3-.08.31-.26 1.04-.29 1.18-.05.19-.15.23-.35.14-1.31-.61-2.13-2.51-2.13-4.05 0-3.3 2.4-6.33 6.91-6.33 3.63 0 6.44 2.58 6.44 6.04 0 3.6-2.27 6.5-5.42 6.5-1.06 0-2.05-.55-2.39-1.2l-.65 2.48c-.24.91-.88 2.05-1.31 2.75.99.3 2.04.47 3.13.47 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">Kitchen Appliances</a></li>
+            <li><a href="#">Living Room</a></li>
+            <li><a href="#">Bedroom</a></li>
+            <li><a href="#">Bathroom</a></li>
+            <li><a href="#">Smart Home</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Sustainability</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Warranty</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 LuxeHome. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span id="toast-message">Item added to cart!</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

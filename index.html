@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LuxeHome - Premium Home Appliances & Furniture. Discover curated collections of designer furniture and top-tier home appliances." />
+  <meta name="keywords" content="home appliances, furniture, luxury, interior design, living room, bedroom" />
+  <meta property="og:title" content="LuxeHome – Premium Home Appliances & Furniture" />
+  <meta property="og:description" content="Elevate your living space with LuxeHome's curated collection." />
+  <title>LuxeHome – Premium Home Appliances &amp; Furniture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">LuxeHome</div>
+      <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-follower" class="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <header id="navbar" class="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo">
+        <span class="navbar__logo-icon"><i class="fas fa-home"></i></span>
+        LuxeHome
+      </a>
+      <nav class="navbar__nav" id="main-nav">
+        <a href="#home" class="navbar__link" data-section="home">Home</a>
+        <a href="#products" class="navbar__link" data-section="products">Shop</a>
+        <a href="#categories" class="navbar__link" data-section="categories">Categories</a>
+        <a href="#about" class="navbar__link" data-section="about">About</a>
+        <a href="#contact" class="navbar__link" data-section="contact">Contact</a>
+      </nav>
+      <div class="navbar__actions">
+        <button class="navbar__btn" id="search-toggle" aria-label="Search"><i class="fas fa-search"></i></button>
+        <button class="navbar__btn" id="wishlist-toggle" aria-label="Wishlist">
+          <i class="fas fa-heart"></i>
+          <span class="navbar__badge" id="wishlist-count">0</span>
+        </button>
+        <button class="navbar__btn" id="cart-toggle" aria-label="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="navbar__badge" id="cart-count">0</span>
+        </button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu__close" id="mobile-close"><i class="fas fa-times"></i></button>
+    <nav class="mobile-menu__nav">
+      <a href="#home" class="mobile-menu__link">Home</a>
+      <a href="#products" class="mobile-menu__link">Shop</a>
+      <a href="#categories" class="mobile-menu__link">Categories</a>
+      <a href="#about" class="mobile-menu__link">About</a>
+      <a href="#contact" class="mobile-menu__link">Contact</a>
+    </nav>
+  </div>
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <button class="search-overlay__close" id="search-close"><i class="fas fa-times"></i></button>
+    <div class="search-overlay__inner">
+      <h2 class="search-overlay__title">What are you looking for?</h2>
+      <div class="search-overlay__input-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" class="search-overlay__input" placeholder="Search products..." />
+      </div>
+      <div class="search-overlay__results" id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer__header">
+      <h3>Your Cart</h3>
+      <button id="cart-close" class="cart-drawer__close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-drawer__body" id="cart-items"></div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__total">
+        <span>Total</span><span id="cart-total">$0.00</span>
+      </div>
+      <button class="btn btn--primary btn--full" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cart-overlay"></div>
+
+  <!-- Wishlist Drawer -->
+  <aside class="wishlist-drawer" id="wishlist-drawer">
+    <div class="cart-drawer__header">
+      <h3>Wishlist</h3>
+      <button id="wishlist-close" class="cart-drawer__close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-drawer__body" id="wishlist-items"></div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero__slider" id="hero-slider">
+      <div class="hero__slide active">
+        <div class="hero__bg" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e)"></div>
+        <div class="hero__content">
+          <span class="hero__tag">New Collection 2026</span>
+          <h1 class="hero__title">Elevate Your <span class="hero__title-accent">Living Space</span></h1>
+          <p class="hero__subtitle">Discover handcrafted furniture and smart appliances that redefine comfort and style</p>
+          <div class="hero__actions">
+            <a href="#products" class="btn btn--primary btn--lg hero__cta">Shop Now <i class="fas fa-arrow-right"></i></a>
+            <a href="#about" class="btn btn--outline btn--lg">Our Story</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__orb hero__orb--1"></div>
+          <div class="hero__orb hero__orb--2"></div>
+          <div class="hero__floating-card hero__floating-card--1">
+            <i class="fas fa-star"></i> 4.9 Rating
+          </div>
+          <div class="hero__floating-card hero__floating-card--2">
+            <i class="fas fa-shipping-fast"></i> Free Delivery
+          </div>
+          <div class="hero__product-showcase">
+            <div class="hero__product-ring"></div>
+            <div class="hero__product-icon"><i class="fas fa-couch"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__slide">
+        <div class="hero__bg" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)"></div>
+        <div class="hero__content">
+          <span class="hero__tag">Smart Home</span>
+          <h1 class="hero__title">Smart <span class="hero__title-accent">Appliances</span> for Modern Life</h1>
+          <p class="hero__subtitle">Energy-efficient, AI-powered home appliances that simplify your daily routine</p>
+          <div class="hero__actions">
+            <a href="#products" class="btn btn--primary btn--lg hero__cta">Explore Now <i class="fas fa-arrow-right"></i></a>
+            <a href="#categories" class="btn btn--outline btn--lg">Browse All</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__orb hero__orb--1" style="background: radial-gradient(circle, #e94560, transparent)"></div>
+          <div class="hero__orb hero__orb--2" style="background: radial-gradient(circle, #533483, transparent)"></div>
+          <div class="hero__product-showcase">
+            <div class="hero__product-ring" style="border-color: rgba(233,69,96,0.4)"></div>
+            <div class="hero__product-icon"><i class="fas fa-blender"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__slide">
+        <div class="hero__bg" style="background: linear-gradient(135deg, #0d0d0d, #1a0533, #2d1b69)"></div>
+        <div class="hero__content">
+          <span class="hero__tag">Bedroom Collection</span>
+          <h1 class="hero__title">Sleep in <span class="hero__title-accent">Luxury</span> Every Night</h1>
+          <p class="hero__subtitle">Premium bedroom furniture crafted for ultimate comfort and timeless elegance</p>
+          <div class="hero__actions">
+            <a href="#products" class="btn btn--primary btn--lg hero__cta">Discover <i class="fas fa-arrow-right"></i></a>
+            <a href="#categories" class="btn btn--outline btn--lg">View Rooms</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__orb hero__orb--1" style="background: radial-gradient(circle, #a788ff, transparent)"></div>
+          <div class="hero__orb hero__orb--2" style="background: radial-gradient(circle, #ff6b9d, transparent)"></div>
+          <div class="hero__product-showcase">
+            <div class="hero__product-ring" style="border-color: rgba(167,136,255,0.4)"></div>
+            <div class="hero__product-icon"><i class="fas fa-bed"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__controls">
+      <button class="hero__btn hero__btn--prev" id="hero-prev"><i class="fas fa-chevron-left"></i></button>
+      <div class="hero__dots" id="hero-dots">
+        <button class="hero__dot active"></button>
+        <button class="hero__dot"></button>
+        <button class="hero__dot"></button>
+      </div>
+      <button class="hero__btn hero__btn--next" id="hero-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat-card" data-aos="fade-up">
+          <div class="stat-card__icon"><i class="fas fa-users"></i></div>
+          <div class="stat-card__number" data-count="50000">0</div>
+          <div class="stat-card__label">Happy Customers</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-card__icon"><i class="fas fa-box-open"></i></div>
+          <div class="stat-card__number" data-count="2500">0</div>
+          <div class="stat-card__label">Products</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-card__icon"><i class="fas fa-star"></i></div>
+          <div class="stat-card__number" data-count="98">0</div>
+          <div class="stat-card__label">% Satisfaction</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-card__icon"><i class="fas fa-globe"></i></div>
+          <div class="stat-card__number" data-count="45">0</div>
+          <div class="stat-card__label">Countries Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories" id="categories">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Browse By</span>
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle">Explore our curated selection for every room in your home</p>
+      </div>
+      <div class="categories__grid" id="categories-grid"></div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Our Collection</span>
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">Handpicked selections that combine form, function, and lasting quality</p>
+      </div>
+      <div class="products__filters" id="product-filters" data-aos="fade-up"></div>
+      <div class="products__grid" id="products-grid"></div>
+      <div class="products__load-more" data-aos="fade-up">
+        <button class="btn btn--outline btn--lg" id="load-more-btn">Load More Products</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Section -->
+  <section class="promo-banner" data-aos="fade-up">
+    <div class="promo-banner__inner">
+      <div class="promo-banner__content">
+        <span class="promo-banner__tag">Limited Time</span>
+        <h2 class="promo-banner__title">Up to <span>40% OFF</span> on Smart Living Collection</h2>
+        <p class="promo-banner__text">Transform your home with our AI-powered appliances. Offer valid until end of month.</p>
+        <a href="#products" class="btn btn--white btn--lg">Shop the Sale <i class="fas fa-fire"></i></a>
+      </div>
+      <div class="promo-banner__visual">
+        <div class="promo-banner__circle"></div>
+        <div class="promo-banner__icon"><i class="fas fa-percentage"></i></div>
+        <div class="promo-banner__particles">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="about">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Real experiences from real homeowners around the world</p>
+      </div>
+      <div class="testimonials__slider" id="testimonials-slider">
+        <div class="testimonials__track" id="testimonials-track"></div>
+      </div>
+      <div class="testimonials__controls">
+        <button class="hero__btn hero__btn--prev" id="test-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="hero__btn hero__btn--next" id="test-next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="features__grid">
+        <div class="feature-card" data-aos="fade-up">
+          <div class="feature-card__icon"><i class="fas fa-shipping-fast"></i></div>
+          <h3>Free Shipping</h3>
+          <p>Free delivery on all orders above $500. White-glove delivery available.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card__icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>5-Year Warranty</h3>
+          <p>All products come with comprehensive warranty and dedicated support.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card__icon"><i class="fas fa-undo-alt"></i></div>
+          <h3>30-Day Returns</h3>
+          <p>Not satisfied? Return easily within 30 days for a full refund.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-card__icon"><i class="fas fa-headset"></i></div>
+          <h3>24/7 Support</h3>
+          <p>Our expert team is always ready to help you with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter" id="contact">
+    <div class="container">
+      <div class="newsletter__inner" data-aos="zoom-in">
+        <div class="newsletter__content">
+          <span class="section-tag">Stay Connected</span>
+          <h2 class="newsletter__title">Get Exclusive Offers & Design Inspiration</h2>
+          <p>Join 50,000+ design lovers. Unsubscribe anytime.</p>
+          <form class="newsletter__form" id="newsletter-form">
+            <input type="email" placeholder="Enter your email address" class="newsletter__input" required />
+            <button type="submit" class="btn btn--primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+        <div class="newsletter__visual">
+          <div class="newsletter__ring"></div>
+          <div class="newsletter__icon"><i class="fas fa-envelope-open-text"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="navbar__logo"><i class="fas fa-home"></i> LuxeHome</a>
+          <p>Elevating homes since 2010. We believe every space deserves beautiful, functional design.</p>
+          <div class="footer__socials">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Shop</h4>
+          <a href="#products">Furniture</a>
+          <a href="#products">Appliances</a>
+          <a href="#products">Lighting</a>
+          <a href="#products">Decor</a>
+          <a href="#products">Outdoor</a>
+        </div>
+        <div class="footer__col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Track Order</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+          <a href="#">Press</a>
+          <a href="#">Sustainability</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 LuxeHome. All rights reserved. Crafted with <i class="fas fa-heart"></i> for beautiful homes.</p>
+        <div class="footer__payments">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-paypal"></i>
+          <i class="fab fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="product-modal" id="product-modal">
+    <div class="product-modal__inner">
+      <button class="product-modal__close" id="modal-close"><i class="fas fa-times"></i></button>
+      <div class="product-modal__content" id="modal-content"></div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modal-overlay"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
